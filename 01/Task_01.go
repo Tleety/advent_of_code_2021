@@ -6,6 +6,8 @@ import (
 
 func main() {
 	fmt.Println("Day 1 - Task 1")
+	fmt.Println("https://adventofcode.com/2021/day/1")
+	fmt.Println("Instructions: Find every time the depth increases and report final amount of times.")
 	inputs := []int{
 		184, 205, 211, 213, 227, 225, 224, 228, 232, 231, 217, 230, 231, 237, 250, 257, 256,
 		255, 260, 261, 250, 252, 243, 242, 240, 248, 253, 261, 262, 241, 227, 234, 235, 236,
