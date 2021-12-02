@@ -15,7 +15,7 @@ type Movement struct {
 func main() {
 	fmt.Println("Day 2 - Task 1")
 	fmt.Println("https://adventofcode.com/2021/day/2")
-	fmt.Println("Instructions: ")
+	fmt.Println("Instructions: Find out where the submarine ends up by following its movement log.")
 	inputs := []Movement{
 		Movement{"forward", 5},
 		Movement{"down", 5},
