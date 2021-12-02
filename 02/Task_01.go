@@ -28,6 +28,8 @@ func main() {
 	submarine_position = execute_submarine_movement_log(submarine_position, inputs)
 	fmt.Println("\nAnswer: ")
 	fmt.Println("Final position is a horizontal position of", submarine_position.Horizontal, "and depth of", submarine_position.Depth)
+	fmt.Println("To get the final answer multiply these two values together.")
+	fmt.Println("Final answer:", submarine_position.Depth, "*", submarine_position.Horizontal, "=", submarine_position.Depth*submarine_position.Horizontal)
 }
 
 func move_submarine(position Position, input Movement) Position {
