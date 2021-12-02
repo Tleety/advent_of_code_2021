@@ -147,7 +147,7 @@ func main() {
 		3278, 3279, 3278, 3288, 3273, 3275, 3277, 3270, 3277, 3275, 3290, 3292, 3296, 3301,
 		3302, 3287, 3286, 3287, 3294, 3296, 3265, 3270, 3272, 3277, 3271, 3266, 3273, 3277,
 		3273, 3271, 3274, 3275, 3273, 3272, 3279, 3281, 3288}
-	inputs_sumed := add_array(inputs)
+	inputs_sumed := sum_3_values_rolling(inputs)
 	increase_count := count_increases(inputs_sumed)
 	fmt.Println("Amount of inceases: ", increase_count)
 }
@@ -164,7 +164,7 @@ func count_increases(input []int) int {
 	return count
 }
 
-func add_array(input []int) []int {
+func sum_3_values_rolling(input []int) []int {
 	var output []int
 	input_maxlength := len(input) - 2
 	for i := range input {
