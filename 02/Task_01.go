@@ -17,12 +17,12 @@ func main() {
 	fmt.Println("https://adventofcode.com/2021/day/2")
 	fmt.Println("Instructions: Find out where the submarine ends up by following its movement log.")
 	inputs := []Movement{
-		Movement{"forward", 5},
-		Movement{"down", 5},
-		Movement{"forward", 8},
-		Movement{"up", 3},
-		Movement{"down", 8},
-		Movement{"forward", 2},
+		{"forward", 5},
+		{"down", 5},
+		{"forward", 8},
+		{"up", 3},
+		{"down", 8},
+		{"forward", 2},
 	}
 
 	fmt.Println("inputs: ", inputs)
