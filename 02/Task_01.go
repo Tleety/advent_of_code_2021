@@ -39,3 +39,10 @@ func move_submarine(position Position, input Movement) Position {
 	}
 	return position
 }
+
+func execute_submarine_movement_log(position Position, movement_log []Movement) Position {
+	for _, movement := range movement_log {
+		position = move_submarine(position, movement)
+	}
+	return position
+}
