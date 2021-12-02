@@ -35,7 +35,8 @@ func main() {
 func move_submarine(position Position, input Movement) Position {
 	switch input.move {
 	case "forward":
-		position.Horizontal += input.value * position.Aim
+		position.Horizontal += input.value
+		position.Depth += input.value * position.Aim
 	case "down":
 		position.Aim += input.value
 	case "up":
