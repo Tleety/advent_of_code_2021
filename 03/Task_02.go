@@ -24,8 +24,8 @@ func main() {
 		"00010",
 		"01010",
 	}
-	oxygen_rating := calculate_oxygen_rating(convert_numberstring_array_to_2d_int_array(inputs))
-	c02_rating := calculate_c02_scrubber_rating(convert_numberstring_array_to_2d_int_array(inputs))
+	oxygen_rating := calculate_rating(convert_numberstring_array_to_2d_int_array(inputs), false)
+	c02_rating := calculate_rating(convert_numberstring_array_to_2d_int_array(inputs), true)
 
 	fmt.Println("\nAnswer: ")
 	fmt.Println("Oxygen rating is", oxygen_rating, "and the C02 scrubber rating is", c02_rating)
@@ -121,22 +121,13 @@ func find_keep_value_at_position(input_array_2d [][]int, position int) int {
 	return value
 }
 
-func calculate_oxygen_rating(input_as_2d_int [][]int) int {
+func calculate_rating(input_as_2d_int [][]int, inverse bool) int {
 	final_array := input_as_2d_int
 	for i := 0; i < len(input_as_2d_int[0]); i += 1 {
 		value_to_keep := find_keep_value_at_position(final_array, i)
-		final_array = exclude_unwanted_array(final_array, i, value_to_keep)
-		if len(final_array) == 1 {
-			break
+		if inverse {
+			value_to_keep = inverse_value(value_to_keep)
 		}
-	}
-	return convert_int_array_to_dec(final_array[0])
-}
-
-func calculate_c02_scrubber_rating(input_as_2d_int [][]int) int {
-	final_array := input_as_2d_int
-	for i := 0; i < len(input_as_2d_int[0]); i += 1 {
-		value_to_keep := inverse_value(find_keep_value_at_position(final_array, i))
 		final_array = exclude_unwanted_array(final_array, i, value_to_keep)
 		if len(final_array) == 1 {
 			break
