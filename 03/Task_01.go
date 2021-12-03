@@ -60,3 +60,23 @@ func transpose(input_as_2d_array [][]int) [][]int {
 	}
 	return out
 }
+
+func calculate_main_number_in_array(input_as_transposed_2d_int [][]int) []int {
+	var main_numbers []int
+	for _, numbers := range input_as_transposed_2d_int {
+		main_value := 0
+		for _, number := range numbers {
+			if number == 0 {
+				main_value -= 1
+			} else {
+				main_value += 1
+			}
+		}
+		if main_value > 0 {
+			main_numbers = append(main_numbers, 1)
+		} else if main_value < 0 {
+			main_numbers = append(main_numbers, 0)
+		}
+	}
+	return main_numbers
+}
