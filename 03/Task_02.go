@@ -10,7 +10,8 @@ func main() {
 	fmt.Println("Day 3 - Task 1")
 	fmt.Println("https://adventofcode.com/2021/day/3")
 	fmt.Println("Instructions: The submarine has been making some creaking noices. The iagnostics are written in binary. Try to decode them to find out what has happened.")
-	inputs := []string{"00100",
+	inputs := []string{
+		"00100",
 		"11110",
 		"10110",
 		"10111",
@@ -23,8 +24,7 @@ func main() {
 		"00010",
 		"01010",
 	}
-	// transposed_array := transpose(convert_numberstring_array_to_2d_int_array(inputs))
-	// main_number := calculate_main_number_in_array(transposed_array)
+	fmt.Println(calculate_oxygen_rating(convert_numberstring_array_to_2d_int_array(inputs)))
 
 	fmt.Println("\nAnswer: ")
 }
@@ -109,11 +109,7 @@ func inverse_int_array(input []int) []int {
 	return output
 }
 
-func calculate_oxygen_rating() {
-
-}
-
-func calculate_life_support_rating(input_as_2d_int [][]int) []int {
+func calculate_oxygen_rating(input_as_2d_int [][]int) []int {
 	final_array := input_as_2d_int
 	for i := 0; i < len(input_as_2d_int[0]); i += 1 {
 		value_to_keep := calculate_main_number_in_array(transpose(final_array), 1)[i]
