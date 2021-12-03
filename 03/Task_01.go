@@ -41,3 +41,11 @@ func convert_numberstring_to_int_array(input string) []int {
 	}
 	return int_array
 }
+
+func convert_numberstring_array_to_2d_int_array(array_of_stringnumbers []string) [][]int {
+	var converted_input_to_int_2d_array [][]int
+	for _, number_as_string := range array_of_stringnumbers {
+		converted_input_to_int_2d_array = append(converted_input_to_int_2d_array, convert_numberstring_to_int_array(number_as_string))
+	}
+	return converted_input_to_int_2d_array
+}
