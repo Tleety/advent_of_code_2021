@@ -112,3 +112,13 @@ func calculate_oxygen_rating() {
 func calculate_life_support_rating() {
 
 }
+
+func exclude_unwanted_array(position_to_look_at int, value_we_want int, input [][]int) [][]int {
+	var wanted_arrays [][]int
+	for _, array := range input {
+		if array[position_to_look_at] == value_we_want {
+			wanted_arrays = append(wanted_arrays, array)
+		}
+	}
+	return wanted_arrays
+}
