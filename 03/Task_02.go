@@ -23,15 +23,10 @@ func main() {
 		"00010",
 		"01010",
 	}
-	transposed_array := transpose(convert_numberstring_array_to_2d_int_array(inputs))
-	main_number := calculate_main_number_in_array(transposed_array)
+	// transposed_array := transpose(convert_numberstring_array_to_2d_int_array(inputs))
+	// main_number := calculate_main_number_in_array(transposed_array)
 
 	fmt.Println("\nAnswer: ")
-	gamma_number := calculate_gamma_rate(main_number)
-	epsilon_number := calculate_gamma_rate(inverse_int_array(main_number))
-	fmt.Println("Final gamma value is", gamma_number, "and epsilon value is", epsilon_number)
-	fmt.Println("To get the final answer multiply these two values together.")
-	fmt.Println("Final answer:", gamma_number, "*", epsilon_number, "=", gamma_number*epsilon_number)
 }
 
 func convert_numberstring_to_int_array(input string) []int {
@@ -110,11 +105,10 @@ func inverse_int_array(input []int) []int {
 	return output
 }
 
-func calculate_gamma_rate(input_as_number_array []int) int {
-	binary_number := convert_int_array_to_string(input_as_number_array)
-	output, err := strconv.ParseInt(binary_number, 2, 64)
-	if err != nil {
-		fmt.Println(err)
-	}
-	return int(output)
+func calculate_oxygen_rating() {
+
+}
+
+func calculate_life_support_rating() {
+
 }
