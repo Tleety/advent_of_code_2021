@@ -121,6 +121,20 @@ func calculate_oxygen_rating(input_as_2d_int [][]int) []int {
 	return final_array[0]
 }
 
+func calculate_c02_scrubber_rating(input_as_2d_int [][]int) []int {
+	final_array := input_as_2d_int
+	for i := 0; i < len(input_as_2d_int[0]); i += 1 {
+		value_to_keep := inverse_int_array(calculate_main_number_in_array(transpose(final_array), 1))[i]
+		fmt.Println(final_array)
+		fmt.Println("Keep value:", value_to_keep, "at position", i+1)
+		final_array = exclude_unwanted_array(final_array, i, value_to_keep)
+		if len(final_array) == 1 {
+			return final_array[0]
+		}
+	}
+	return final_array[0]
+}
+
 func exclude_unwanted_array(input [][]int, position_to_look_at int, value_we_want int) [][]int {
 	var wanted_arrays [][]int
 	for _, array := range input {
