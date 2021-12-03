@@ -85,3 +85,32 @@ func calculate_main_number_in_array(input_as_transposed_2d_int [][]int) []int {
 	}
 	return main_numbers
 }
+
+func convert_int_array_to_string(input_as_number_array []int) string {
+	var number_string string
+	for _, value := range input_as_number_array {
+		number_string += strconv.Itoa(value)
+	}
+	return number_string
+}
+
+func inverse_int_array(input []int) []int {
+	var output []int
+	for _, value := range input {
+		if value == 0 {
+			output = append(output, 1)
+		} else {
+			output = append(output, 0)
+		}
+	}
+	return output
+}
+
+func calculate_gamma_rate(input_as_number_array []int) int {
+	binary_number := convert_int_array_to_string(input_as_number_array)
+	output, err := strconv.ParseInt(binary_number, 2, 64)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return int(output)
+}
