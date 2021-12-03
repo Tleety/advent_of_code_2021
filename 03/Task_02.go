@@ -77,10 +77,14 @@ func return_most_common_value(input []int) int {
 	return -1
 }
 
-func calculate_main_number_in_array(input_as_transposed_2d_int [][]int) []int {
+func calculate_main_number_in_array(input_as_transposed_2d_int [][]int, primary_num int) []int {
 	var main_numbers []int
 	for _, numbers := range input_as_transposed_2d_int {
-		main_numbers = append(main_numbers, return_most_common_value(numbers))
+		num := return_most_common_value(numbers)
+		if num == -1 {
+			num = primary_num
+		}
+		main_numbers = append(main_numbers, num)
 	}
 	return main_numbers
 }
@@ -109,11 +113,19 @@ func calculate_oxygen_rating() {
 
 }
 
-func calculate_life_support_rating() {
-
+func calculate_life_support_rating(input_as_2d_int [][]int) []int {
+	final_array := input_as_2d_int
+	for i := 0; i < len(input_as_2d_int[0]); i += 1 {
+		value_to_keep := calculate_main_number_in_array(transpose(final_array), 1)[i]
+		final_array = exclude_unwanted_array(final_array, i, value_to_keep)
+		if len(final_array) == 1 {
+			return final_array[0]
+		}
+	}
+	return final_array[0]
 }
 
-func exclude_unwanted_array(position_to_look_at int, value_we_want int, input [][]int) [][]int {
+func exclude_unwanted_array(input [][]int, position_to_look_at int, value_we_want int) [][]int {
 	var wanted_arrays [][]int
 	for _, array := range input {
 		if array[position_to_look_at] == value_we_want {
