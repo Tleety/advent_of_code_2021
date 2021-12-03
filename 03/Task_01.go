@@ -24,9 +24,15 @@ func main() {
 		"00010",
 		"01010",
 	}
-	fmt.Println(inputs)
+	transposed_array := transpose(convert_numberstring_array_to_2d_int_array(inputs))
+	main_number := calculate_main_number_in_array(transposed_array)
 
 	fmt.Println("\nAnswer: ")
+	gamma_number := calculate_gamma_rate(main_number)
+	epsilon_number := calculate_gamma_rate(inverse_int_array(main_number))
+	fmt.Println("Final gamma value is", gamma_number, "and epsilon value is", epsilon_number)
+	fmt.Println("To get the final answer multiply these two values together.")
+	fmt.Println("Final answer:", gamma_number, "*", epsilon_number, "=", gamma_number*epsilon_number)
 }
 
 func convert_numberstring_to_int_array(input string) []int {
