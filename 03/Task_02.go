@@ -9,7 +9,7 @@ import (
 func main() {
 	fmt.Println("Day 3 - Task 1")
 	fmt.Println("https://adventofcode.com/2021/day/3")
-	fmt.Println("Instructions: The submarine has been making some creaking noices. The iagnostics are written in binary. Try to decode them to find out what has happened.")
+	fmt.Println("Instructions: The submarine has been making some creaking noices. Decode diagnostics to try and find the oxygen and C02 scrubbers ratings")
 	inputs := []string{
 		"00100",
 		"11110",
@@ -24,10 +24,13 @@ func main() {
 		"00010",
 		"01010",
 	}
-	fmt.Println(calculate_oxygen_rating(convert_numberstring_array_to_2d_int_array(inputs)))
-	fmt.Println(calculate_c02_scrubber_rating(convert_numberstring_array_to_2d_int_array(inputs)))
+	oxygen_rating := calculate_oxygen_rating(convert_numberstring_array_to_2d_int_array(inputs))
+	c02_rating := calculate_c02_scrubber_rating(convert_numberstring_array_to_2d_int_array(inputs))
 
 	fmt.Println("\nAnswer: ")
+	fmt.Println("Oxygen rating is", oxygen_rating, "and the C02 scrubber rating is", c02_rating)
+	fmt.Println("To get the final answer multiply these two values together.")
+	fmt.Println("Final answer:", oxygen_rating, "*", c02_rating, "=", oxygen_rating*c02_rating)
 }
 
 func convert_numberstring_to_int_array(input string) []int {
@@ -121,9 +124,7 @@ func find_keep_value_at_position(input_array_2d [][]int, position int) int {
 func calculate_oxygen_rating(input_as_2d_int [][]int) int {
 	final_array := input_as_2d_int
 	for i := 0; i < len(input_as_2d_int[0]); i += 1 {
-		fmt.Println(final_array)
 		value_to_keep := find_keep_value_at_position(final_array, i)
-		fmt.Println(value_to_keep)
 		final_array = exclude_unwanted_array(final_array, i, value_to_keep)
 		if len(final_array) == 1 {
 			break
