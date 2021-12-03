@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"strconv"
+	"strings"
 )
 
 func main() {
@@ -25,4 +27,17 @@ func main() {
 	fmt.Println(inputs)
 
 	fmt.Println("\nAnswer: ")
+}
+
+func convert_numberstring_to_int_array(input string) []int {
+	input_as_array := strings.Split(input, "")
+	int_array := []int{}
+	for _, digit_as_string := range input_as_array {
+		digit_as_int, err := strconv.Atoi(digit_as_string)
+		if err != nil {
+			panic(err)
+		}
+		int_array = append(int_array, digit_as_int)
+	}
+	return int_array
 }
