@@ -58,7 +58,6 @@ func convert_numberstring_array_to_2d_int_array(array_of_stringnumbers []string)
 
 func transpose(input_as_2d_array [][]int) [][]int {
 	out := make([][]int, len(input_as_2d_array[0]))
-	fmt.Println("inp len: ", len(input_as_2d_array[0]))
 	for _, input_array := range input_as_2d_array {
 		for j, value := range input_array {
 			out[j] = append(out[j], value)
