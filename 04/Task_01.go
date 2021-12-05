@@ -34,7 +34,8 @@ func main() {
 	}
 	fmt.Println("input", input_numbers)
 	fmt.Println("Boards:", input_board)
-	split_input_into_boards(input_board)
+	boards := split_input_into_boards(input_board)
+	boards[0] = activate_number_on_board(boards[0], 4)
 
 	fmt.Println("\nAnswer: ")
 }
@@ -59,4 +60,16 @@ func split_input_into_boards(input [][]int) []Board {
 		boards = append(boards, new_board)
 	}
 	return boards
+}
+
+func activate_number_on_board(board Board, number_rolled int) Board {
+	for i, row := range board.numbers {
+		for j, number := range row {
+			if number == number_rolled {
+				board.active_number[i][j] = true
+				break
+			}
+		}
+	}
+	return board
 }
