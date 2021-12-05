@@ -7,7 +7,8 @@ import (
 type Board struct {
 	numbers       [][]int
 	active_number [][]bool
-	score         int
+	bingo         bool
+	final_number  int
 }
 
 func main() {
@@ -35,7 +36,10 @@ func main() {
 	fmt.Println("input", input_numbers)
 	fmt.Println("Boards:", input_board)
 	boards := split_input_into_boards(input_board)
-	boards[0] = activate_number_on_board(boards[0], 4)
+	for _, rolled_number := range input_numbers {
+		boards[0] = activate_number_on_board(boards[0], rolled_number)
+	}
+	fmt.Println("Final board", boards[0].active_number)
 
 	fmt.Println("\nAnswer: ")
 }
@@ -50,7 +54,6 @@ func initialize_array(size_x int, size_y int, value bool) [][]bool {
 
 func split_input_into_boards(input [][]int) []Board {
 	var boards []Board
-
 	var board_length = len(input[0])
 	for i := 0; i < len(input); {
 		var new_board Board
@@ -67,6 +70,7 @@ func activate_number_on_board(board Board, number_rolled int) Board {
 		for j, number := range row {
 			if number == number_rolled {
 				board.active_number[i][j] = true
+				board.bingo = check_for_bingo(i, j, board)
 				break
 			}
 		}
