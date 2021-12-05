@@ -33,11 +33,10 @@ func main() {
 		{22, 11, 13, 6, 5},
 		{2, 0, 12, 3, 7},
 	}
-	fmt.Println("input", input_numbers)
-	fmt.Println("Boards:", input_board)
 	boards := split_input_into_boards(input_board)
-	activate_number_on_all_boards(boards, 4)
-	fmt.Println("Final board", boards[0].active_number)
+	_, bingo_board := roll_numbers_and_check_boards(boards, input_numbers)
+	fmt.Println("Final board: ")
+	print_active_numbers(bingo_board)
 
 	fmt.Println("\nAnswer: ")
 }
@@ -82,21 +81,31 @@ func split_input_into_boards(input [][]int) []Board {
 	return boards
 }
 
-func roll_numbers_and_check_boards(boards []Board, numbers_rolled []int) bool {
+func roll_numbers_and_check_boards(boards []Board, numbers_rolled []int) (bool, Board) {
+	bingo := false
+	var bingo_board Board
 	for _, number := range numbers_rolled {
-		boards = activate_number_on_all_boards(boards, number)
+		bingo, bingo_board, boards = activate_number_on_all_boards(boards, number)
+		if bingo {
+			return true, bingo_board
+		}
 	}
-	return false
+	return false, bingo_board
 }
 
-func activate_number_on_all_boards(boards []Board, number_rolled int) []Board {
+func activate_number_on_all_boards(boards []Board, number_rolled int) (bool, Board, []Board) {
+	bingo := false
+	var bingo_board Board
 	for _, board := range boards {
-		board = activate_number_on_board(board, number_rolled)
+		bingo, board = activate_number_on_board(board, number_rolled)
+		if bingo {
+			return bingo, board, boards
+		}
 	}
-	return boards
+	return bingo, bingo_board, boards
 }
 
-func activate_number_on_board(board Board, number_rolled int) Board {
+func activate_number_on_board(board Board, number_rolled int) (bool, Board) {
 	for i, row := range board.numbers {
 		for j, number := range row {
 			if number == number_rolled {
@@ -106,7 +115,7 @@ func activate_number_on_board(board Board, number_rolled int) Board {
 			}
 		}
 	}
-	return board
+	return board.bingo, board
 }
 
 func check_column_for_bingo(column int, board Board) bool {
