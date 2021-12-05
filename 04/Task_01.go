@@ -73,3 +73,31 @@ func activate_number_on_board(board Board, number_rolled int) Board {
 	}
 	return board
 }
+
+func check_column_for_bingo(column int, board Board) bool {
+	for _, row := range board.active_number {
+		if !row[column] {
+			return false
+		}
+	}
+	return true
+}
+
+func check_row_for_bingo(row []bool) bool {
+	for _, value := range row {
+		if !value {
+			return false
+		}
+	}
+	return true
+}
+
+func check_for_bingo(row_number int, col_number int, board Board) bool {
+	if check_column_for_bingo(col_number, board) {
+		return true
+	}
+	if check_row_for_bingo(board.active_number[row_number]) {
+		return true
+	}
+	return false
+}
