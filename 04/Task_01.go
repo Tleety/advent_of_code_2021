@@ -36,9 +36,7 @@ func main() {
 	fmt.Println("input", input_numbers)
 	fmt.Println("Boards:", input_board)
 	boards := split_input_into_boards(input_board)
-	for _, rolled_number := range input_numbers {
-		boards[0] = activate_number_on_board(boards[0], rolled_number)
-	}
+	activate_number_on_all_boards(boards, 4)
 	fmt.Println("Final board", boards[0].active_number)
 
 	fmt.Println("\nAnswer: ")
@@ -61,6 +59,13 @@ func split_input_into_boards(input [][]int) []Board {
 		new_board.active_number = initialize_array(board_length, board_length, false)
 		i = i + board_length
 		boards = append(boards, new_board)
+	}
+	return boards
+}
+
+func activate_number_on_all_boards(boards []Board, number_rolled int) []Board {
+	for _, board := range boards {
+		board = activate_number_on_board(board, number_rolled)
 	}
 	return boards
 }
