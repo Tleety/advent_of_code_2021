@@ -63,6 +63,13 @@ func split_input_into_boards(input [][]int) []Board {
 	return boards
 }
 
+func roll_numbers_and_check_boards(boards []Board, numbers_rolled []int) bool {
+	for _, number := range numbers_rolled {
+		boards = activate_number_on_all_boards(boards, number)
+	}
+	return false
+}
+
 func activate_number_on_all_boards(boards []Board, number_rolled int) []Board {
 	for _, board := range boards {
 		board = activate_number_on_board(board, number_rolled)
