@@ -50,6 +50,25 @@ func initialize_array(size_x int, size_y int, value bool) [][]bool {
 	return new_array
 }
 
+func print_2dArray(array [][]int) {
+	for _, row := range array {
+		fmt.Println(row)
+	}
+}
+
+func print_active_numbers(board Board) {
+	for i, row := range board.numbers {
+		for j, num := range row {
+			if board.active_number[i][j] == true {
+				fmt.Print("X\t")
+			} else {
+				fmt.Print(num, "\t")
+			}
+		}
+		fmt.Print("\n")
+	}
+}
+
 func split_input_into_boards(input [][]int) []Board {
 	var boards []Board
 	var board_length = len(input[0])
