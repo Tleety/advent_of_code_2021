@@ -38,3 +38,25 @@ func main() {
 
 	fmt.Println("\nAnswer: ")
 }
+
+func initialize_array(size_x int, size_y int, value bool) [][]bool {
+	new_array := make([][]bool, size_x)
+	for i := 0; i < size_x; i++ {
+		new_array[i] = make([]bool, size_y)
+	}
+	return new_array
+}
+
+func split_input_into_boards(input [][]int) []Board {
+	var boards []Board
+
+	var board_length = len(input[0])
+	for i := 0; i < len(input); {
+		var new_board Board
+		new_board.numbers = input[i : i+board_length]
+		new_board.active_number = initialize_array(board_length, board_length, false)
+		i = i + board_length
+		boards = append(boards, new_board)
+	}
+	return boards
+}
